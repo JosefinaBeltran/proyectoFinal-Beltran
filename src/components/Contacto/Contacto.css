@@ -1,9 +1,29 @@
-.mb-3 {
-	width: 400px;
+body {
+	background-color: #272727; 
+	color: #fdf9f2; 
 }
 
-.contenedorFormulario.container {
+.contenedorFormulario {
 	margin: 0 auto;
 	padding: 50px;
 	width: 800px;
+}
+
+.tituloFormulario {
+	margin-bottom: 30px; 
+}
+
+.text-center {
+	text-align: center;
+}
+
+.mb-3 {
+	width: 400px;
+	margin: 0 auto; 
+}
+
+.mensajeExito {
+	color: #28a745; 
+	margin-top: 20px; 
+	font-weight: bold; 
 }

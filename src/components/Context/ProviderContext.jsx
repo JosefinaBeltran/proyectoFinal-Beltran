@@ -1,49 +1,47 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react";
 
-export const ProviderContext = createContext()
+export const ProviderContext = createContext();
 
-const firstCart = JSON.parse(localStorage.getItem("cart")) || []
+const firstCart = JSON.parse(localStorage.getItem("cart")) || [];
 
 export const ShopProvider = ({ children }) => {
-	const [cart, setCart] = useState(firstCart)
+	const [cart, setCart] = useState(firstCart);
 
 	const addToCart = (item, qty) => {
-		const itemAdded = { ...item, qty }
-		const newCart = [...cart]
-		const inCart = newCart.find((prod) => prod.id === itemAdded.id)
+		const itemAdded = { ...item, qty };
+		const newCart = [...cart];
+		const inCart = newCart.find((prod) => prod.id === itemAdded.id);
 
 		if (inCart) {
-			inCart.qty += qty
+			inCart.qty += qty;
 		} else {
-			newCart.push(itemAdded)
+			newCart.push(itemAdded);
 		}
-		setCart(newCart)
-	}
+		setCart(newCart);
+	};
 
 	const qtyInCart = () => {
-		return cart.reduce((acc, prod) => acc + prod.qty, 0)
-	}
-
-	const listCartContext = createContext(null)
+		return cart.reduce((acc, prod) => acc + prod.qty, 0);
+	};
 
 	const remove = (id) => {
-		const updateList = cart.filter((product) => product.id !== id)
-		setCart(updateList)
-	}
+		const updateList = cart.filter((product) => product.id !== id);
+		setCart(updateList);
+	};
 
 	const totalPrice = () => {
-		return cart.reduce((acc, prod) => acc + prod.price * prod.qty, 0)
-	}
+		return cart.reduce((acc, prod) => acc + prod.price * prod.qty, 0);
+	};
 
 	const emptyCart = () => {
-		setCart([])
-	}
+		setCart([]);
+	};
 
 	useEffect(() => {
-		localStorage.setItem("cart", JSON.stringify(cart))
-	}, [cart])
+		localStorage.setItem("cart", JSON.stringify(cart));
+	}, [cart]);
 
-	const [showCart, setShowCart] = useState("none")
+	const [showCart, setShowCart] = useState("none");
 
 	return (
 		<ProviderContext.Provider
@@ -51,7 +49,6 @@ export const ShopProvider = ({ children }) => {
 				cart,
 				addToCart,
 				qtyInCart,
-				listCartContext,
 				remove,
 				totalPrice,
 				emptyCart,
@@ -60,5 +57,5 @@ export const ShopProvider = ({ children }) => {
 			}}>
 			{children}
 		</ProviderContext.Provider>
-	)
-}
+	);
+};

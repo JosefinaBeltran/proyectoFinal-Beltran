@@ -1,40 +1,41 @@
-import { useContext } from "react"
-import { Container, Card, Button, Col, Image } from "react-bootstrap"
-import { ProviderContext } from "../Context/ProviderContext"
-import "./FloatingCart.css"
+import { useContext } from "react";
+import { Container, Card, Button, Col, Image } from "react-bootstrap";
+import { ProviderContext } from "../Context/ProviderContext";
+import "./FloatingCart.css";
 
-const FloatingCart = ({ id, title, price, stock, image }) => {
-	const { remove } = useContext(ProviderContext)
+const FloatingCart = ({ id, title, price, stock, imagen }) => {
+	const { remove } = useContext(ProviderContext);
 
 	return (
 		<Container fluid className="itemInCart">
-			<div>
-				<Card
+			<Card
+				style={{
+					width: "100%",
+					display: "flex",
+					flexDirection: "row",
+				}}
+				className="cardImage"
+			>
+				<Col xs={6} md={3}>
+					<Image src={`/Img/${imagen}`} alt={title} thumbnail />
+				</Col>
+				<Col
 					style={{
-						width: "100%",
 						display: "flex",
-						flexDirection: "row",
+						flexDirection: "column",
+						width: "100%",
 					}}
-					className="cardImage">
-					<Col xs={6} md={3}>
-						<Image src={image} thumbnail />
-					</Col>
-					<Col
-						style={{
-							display: "flex",
-							flexDirection: "column",
-							width: "100%",
-						}}>
-						<span>{title}</span>
-						<span>Cantidad: {stock}</span>
-						<span>Subtotal: {`$ ${(stock * price).toFixed(2)}`}</span>
-						<Button variant="primary" onClick={() => remove(id)}>
-							🗑️
-						</Button>
-					</Col>
-				</Card>
-			</div>
+				>
+					<span className="itemTitle">{title}</span>
+					<span>Precio: ${price}</span>
+					<Button variant="outline-danger" onClick={() => remove(id)}>
+						Eliminar
+					</Button>
+
+				</Col>
+			</Card>
 		</Container>
-	)
-}
-export default FloatingCart
+	);
+};
+
+export default FloatingCart;

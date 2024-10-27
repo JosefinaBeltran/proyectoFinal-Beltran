@@ -1,13 +1,10 @@
-import { useState } from "react"
-import Button from "react-bootstrap/Button"
+import Button from "react-bootstrap/Button";
+import "./ItemCount.css";
 
 const ItemCount = ({ qty, handleRestar, handleSumar, handleAgregar }) => {
-
 	return (
 		<div>
-
 			<div className="item-count">
-
 				<Button variant="secondary" onClick={handleRestar}>
 					-
 				</Button>
@@ -15,17 +12,16 @@ const ItemCount = ({ qty, handleRestar, handleSumar, handleAgregar }) => {
 				<Button variant="secondary" onClick={handleSumar}>
 					+
 				</Button>
-                
 			</div>
-
 			<Button
 				variant="primary"
 				className="agregar-al-carrito"
-				onClick={handleAgregar}>
+				onClick={handleAgregar}
+			>
 				Agregar al carrito
 			</Button>
-
 		</div>
-	)
-}
-export default ItemCount
+	);
+};
+
+export default ItemCount;

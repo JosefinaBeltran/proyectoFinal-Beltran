@@ -1,37 +1,29 @@
-
-import Card from "react-bootstrap/Card"
-import { Container, Row } from "react-bootstrap"
-import "./ItemDetail.css"
-import ItemCount from "./ItemCount"
-import { useContext, useState } from "react"
-import { ProviderContext } from "../Context/ProviderContext"
+import Card from "react-bootstrap/Card";
+import { Container, Row } from "react-bootstrap";
+import "./ItemDetail.css";
+import ItemCount from "./ItemCount";
+import { useContext, useState } from "react";
+import { ProviderContext } from "../Context/ProviderContext";
 
 const ItemDetail = ({ item }) => {
-	const { cart, addToCart } = useContext(ProviderContext)
+	const { addToCart } = useContext(ProviderContext);
+	const [qty, setQty] = useState(1);
 
-	const [qty, setQty] = useState(1)
+	const handleRestar = () => {if (qty > 1) setQty(qty - 1);};
 
-	const handleRestar = () => {
-		qty > 1 && setQty(qty - 1)
-	}
-
-	const handleSumar = () => {
-		qty < item.stock && setQty(qty + 1)
-	}
+	const handleSumar = () => {if (qty < item.stock) setQty(qty + 1);};
 
 	return (
 		<Container className="container-detailed">
-			<Row>
-				<Card style={{ width: "18rem" }} key={item.id}>
-					<Card.Img variant="top" src={item.image} />
+			<Row className="justify-content-center">
+				<Card className="item-card" key={item.id}>
+					<Card.Img variant="top" src={`/Img/${item.imagen}`} />
 					<Card.Body>
-						<Card.Title>{item.title}</Card.Title>
-						<Card.Text>{item.category}</Card.Text>
-						<Card.Text>Stock: {item.stock}</Card.Text>
-						<Card.Text>{item.description}</Card.Text>
-						<h6 className="card-price" variant="primary">
-							$ {item.price}
-						</h6>
+						<Card.Title className="card-title">{item.title}</Card.Title>
+						<Card.Text className="card-category">{item.category}</Card.Text>
+						<Card.Text className="card-stock">Stock: {item.stock}</Card.Text>
+						<Card.Text className="card-description">{item.description}</Card.Text>
+						<h6 className="card-price">$ {item.price}</h6>
 						<ItemCount
 							qty={qty}
 							handleRestar={handleRestar}
@@ -44,7 +36,7 @@ const ItemDetail = ({ item }) => {
 				</Card>
 			</Row>
 		</Container>
-	)
-}
+	);
+};
 
-export default ItemDetail
+export default ItemDetail;

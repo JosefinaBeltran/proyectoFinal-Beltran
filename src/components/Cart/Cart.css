@@ -1,15 +1,94 @@
-.itemInCart {
-	width: 50%;
-	margin: 0 auto;
-	margin-top: 3rem;
+.cartContainer {
+	background-color: #1e1e1e;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+	color: #fdf9f2;
+	margin-top: 20px; 
 }
 
-button.btn.btn-outline-primary {
+
+.itemInCart {
+	width: 95%;
+	margin: 1.5rem auto;
+	background-color: #272727;
+	border-radius: 8px;
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between; 
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease;
+}
+
+.itemInCart:hover {
+	transform: scale(1.02);
+}
+
+
+.cardImage {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	align-items: center;
+}
+
+
+.productImage {
+	border-radius: 5px;
+	object-fit: cover;
+	margin-right: 15px;
+	border: 2px solid #444;
+}
+
+
+.productDetails {
+	display: flex;
+	flex-direction: column;
+	margin-left: 20px; 
+	width: 100%;
+}
+
+
+.itemTitle {
+	font-weight: bold;
+	font-size: 1.2rem;
+	color: #fdf9f2;
+	margin-bottom: 8px;
+}
+
+
+.itemInCart span {
+	color: #ccc;
+	font-size: 0.95rem;
+	margin-bottom: 8px; 
+}
+
+
+.removeButtonCol {
+	display: flex; 
+	justify-content: flex-end; 
+}
+
+button.btn.btn-outline-danger {
 	width: 100px;
-	margin-top: 20px;
+	margin: 10px; 
+	color: #ff6b6b;
+	border: 2px solid #ff6b6b;
+	background-color: transparent;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button.btn.btn-outline-danger:hover {
+	background-color: #ff6b6b;
+	color: #fff;
 }
 
 .totalPrice {
 	text-align: center;
 	padding-top: 2rem;
+	font-weight: bold;
+	font-size: 1.4rem;
+	color: #28a745;
+	margin-top: 20px;
 }

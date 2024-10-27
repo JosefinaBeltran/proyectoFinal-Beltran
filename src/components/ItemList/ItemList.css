@@ -1,0 +1,16 @@
+.titulo-tienda {
+    text-align: center;
+    margin: 20px 0;
+    color: #fdf9f2;
+    font-size: 24px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.row {
+    margin: 0 auto;
+}
+
+.columna {
+    display: flex;
+    justify-content: center;
+}

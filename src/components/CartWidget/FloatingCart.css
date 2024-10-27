@@ -1,4 +1,8 @@
-.itemInCart.container-fluid {
-	width: 98%;
-	margin: 10px;
+.itemInCart {
+	margin: 10px 0; /* Margen vertical entre los elementos del carrito */
+}
+
+.cardImage {
+	border-radius: 8px; /* Bordes redondeados en las tarjetas */
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }

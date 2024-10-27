@@ -1,0 +1,44 @@
+.item-card {
+    background-color: #1b1b1b; 
+    border: 1px solid;
+    transition: transform 0.3s;
+}
+
+.item-card:hover {
+    transform: scale(1.05); 
+}
+
+.card-img-top {
+    border-radius: 8px 8px 0 0;
+}
+
+.card-title {
+    color: #fdf9f2;
+    font-size: 18px;
+}
+
+.card-text {
+    color: #fdf9f2;
+}
+
+.card-price {
+    color: #28a745;
+    font-weight: bold;
+}
+
+#botonesItem {
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 10px;
+}
+
+.btn-item-list {
+    background-color: #2f4858;
+    color: #fdf9f2; 
+    border: none; 
+}
+
+.btn-item-list:hover {
+    background-color: #28a745; 
+    color: #fdf9f2; 
+}
