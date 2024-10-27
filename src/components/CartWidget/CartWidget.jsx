@@ -1,13 +1,19 @@
-import "./CartWidget.css";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import { useContext } from "react"
+import { ProviderContext } from "../Context/ProviderContext"
 
-function CartWidget() {
-    return (
-        <div className="carrito">
-            <MdOutlineShoppingCart size="40px" color="#fdf9f2" />
-            <span className="badge">7</span>
-        </div>
-    );
+const CartWidget = () => {
+	const { qtyInCart, setShowCart, showCart, cart } =
+		useContext(ProviderContext)
+	const cartShowed = () => {
+		setShowCart(showCart === "none" ? "flex" : "none")
+	}
+	console.log(cart)
+	return (
+		<div className="carrito" onClick={cartShowed}>
+			🛒
+			<span className="badge">{qtyInCart()}</span>
+		</div>
+	)
 }
 
-export default CartWidget;
+export default CartWidget

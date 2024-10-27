@@ -1,44 +1,36 @@
-import "./ItemListContainer.css";
-import fetchSimulation from "../../FetchSimulation";
-import CardItems from "../CardItems/CardItems";
-import products from "../Products/products";
-import Container from "react-bootstrap/Container";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react"
+import "./ItemListContainer.css"
+import Container from "react-bootstrap/Container"
+import { getData } from "../helper/Getdata"
+import ItemList from "../ItemList/ItemList"
+import { useParams } from "react-router-dom"
+import { collection, getDocs, query, where } from "firebase/firestore"
+import { db } from "../../firebase/Config"
 
 const ItemListContainer = () => {
-	const [data, SetData] = useState([]);
-	let { idCategory } = useParams();
+	const [products, setProducts] = useState([])
+	const [title, setTitle] = useState("Productos")
+	const category = useParams().idCategory
 
 	useEffect(() => {
-		if (idCategory === undefined) {
-			fetchSimulation(products, 1000)
-				.then((response) => SetData(response))
-				.catch((error) => console.log(error));
-		} else {
-			fetchSimulation(
-				products.filter((filter) => filter.category == idCategory)
+		const productsRef = collection(db, "items");
+		const q = category
+			? query(productsRef, where("category", "==", category))
+			: productsRef
+		getDocs(q).then((res) => {
+			setProducts(
+				res.docs.map((doc) => {
+					return { ...doc.data(), id: doc.id };
+				})
 			)
-				.then((response) => SetData(response))
-				.catch((error) => console.log(error));
-		}
-	}, [idCategory]);
+		})
+	}, [category])
 
 	return (
-		<>
-			<Container>
-				{data.map((products) => (
-					<CardItems
-						key={products.id}
-						id={products.id}
-						imagen={products.imagen}
-						nombre={products.title}
-						category={products.category}
-						precio={products.price}
-					/>
-				))}
-			</Container>
-		</>
-	);
-};
-export default ItemListContainer;
+		<Container>
+			<ItemList products={products} category={category} />
+		</Container>
+	)
+}
+
+export default ItemListContainer
